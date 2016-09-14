@@ -1,0 +1,37 @@
+---  
+spring:
+  datasource:
+    name: mydb
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://127.0.0.1:3306/custdb?characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver
+    minIdle: 5
+    maxActive: 10
+    initialSize: 1
+    timeBetweenEvictionRunsMillis: 3000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: zhb
+    password: zhb
+    virtual-host: cloud-zhb
+
+mybatis:
+  #此配置配合xmlUserMapper的使用
+  mapperLocations: classpath:/mappers/*.xml
+  typeAliasesPackage: com.bincai.cloud.cust.domain.model
+eureka:
+  instance:
+    preferIpAddress: true
+    metadata-map:
+      cluster: MAIN
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
